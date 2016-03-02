@@ -2,14 +2,37 @@
 <html ng-app>
 <head>
     <meta charset="utf-8">
-    <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular/angular.min.js" ></script>
+    <style>
+        .error {
+            background-color: red;
+        }
+    </style>
     <title>Hello world app</title>
 </head>
 <body>
-<ul ng-init='messages=[]'>
-    <li ng-repeat='text in messages'>{{text}}</li>
-</ul>
-<input type="text" name="name" ng-model='textMessage' value="">
-<button ng-click="messages.push(textMessage)">Increment</button>
+<div>
+    <form name="userForm" ng-init='users=[]'>
+        <div>
+            <label for="name">Enter Name</label>
+            <input type="text" id="name" ng-model='name' required/>
+        </div>
+        <div>
+            <label for="age">Enter Age</label>
+            <input type="number" id="age" ng-model='age' min="1" max="200" required/>
+        </div>
+        <div>
+            <label for="gender">Enter Gender</label>
+            <input type="text" id="gender" ng-model='gender' required/>
+        </div>
+        <button ng-click="error=''; userForm.$valid ? users.push({userName: name, age: age, gender: gender}) : error = 'Fill all fields with good data Man';">Add new user</button>
+    </form>
+</div>
+<div ng-init='error' class="error">{{error}}</div>
+<div class="peoples">
+    <ul>
+        <li ng-repeat='user in users'>Name: {{user.userName}} , Age: {{user.age}}, Gender: {{user.gender}}</li>
+    </ul>
+</div>
 </body>
 </html>
