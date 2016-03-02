@@ -1,0 +1,24 @@
+{
+  "name": "angularcourse",
+  "homepage": "https://github.com/Mukolajko/angularcourse",
+  "authors": [
+    "Mykola Borysiuk <borusyuk_kolya@ukr.net>"
+  ],
+  "description": "test course",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "bootstrap": "~3.3.6"
+  }
+}
