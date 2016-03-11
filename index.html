@@ -1,38 +1,62 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="myApp">
 <head>
     <meta charset="utf-8">
-    <script src="bower_components/angular/angular.min.js" ></script>
-    <style>
-        .error {
-            background-color: red;
-        }
-    </style>
-    <title>Hello world app</title>
+    <title> Modules , Basic Controllers , Basic $scope</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+    <link href="bower_components/AngularJS-Toaster/toaster.min.css" rel="stylesheet" />
 </head>
-<body>
-<div>
-    <form name="userForm" ng-init='users=[]'>
-        <div>
-            <label for="name">Enter Name</label>
-            <input type="text" id="name" ng-model='name' required/>
+<body ng-controller="MainController as mainCtl">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in mainCtl.users track by $index">
+                        <th scope="row">{{$index + 1}}</th>
+                        <td>{{user.name}}</td>
+                        <td>{{user.age}}</td>
+                        <td>{{user.gender}}</td>
+                        <td><a href="" ng-click="mainCtl.removeUser($index)"><i class="glyphicon glyphicon-remove"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <form class="form-inline" name="userForm">
+                    <div class="form-group">
+                        <label for="name">First Name</label>
+                        <input type="text" class="form-control" id="name" ng-model="mainCtl.user.name" placeholder="User name">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="text" class="form-control" id="age" ng-model="mainCtl.user.age" placeholder="Age">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input type="text" class="form-control" id="gender" ng-model="mainCtl.user.gender" placeholder="Gender">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="mainCtl.addUser()">Push data</button>
+                </form>
+            </div>
         </div>
-        <div>
-            <label for="age">Enter Age</label>
-            <input type="number" id="age" ng-model='age' min="1" max="200" required/>
-        </div>
-        <div>
-            <label for="gender">Enter Gender</label>
-            <input type="text" id="gender" ng-model='gender' required/>
-        </div>
-        <button ng-click="error=''; userForm.$valid ? users.push({userName: name, age: age, gender: gender}) : error = 'Fill all fields with good data Man';">Add new user</button>
-    </form>
+    </div>
+    <toaster-container></toaster-container>
 </div>
-<div ng-init='error' class="error">{{error}}</div>
-<div class="peoples">
-    <ul>
-        <li ng-repeat='user in users'>Name: {{user.userName}} , Age: {{user.age}}, Gender: {{user.gender}}</li>
-    </ul>
-</div>
+<script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js" ></script>
+<script src="bower_components/AngularJS-Toaster/toaster.min.js"></script>
+<script src="js/app.js" charset="utf-8"></script>
+<script src="js/controllers/MainController.js" charset="utf-8"></script>
 </body>
 </html>
