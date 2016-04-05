@@ -1,65 +1,25 @@
 <!DOCTYPE html>
-<html >
-  <head>
+<html ng-app='myApp'>
+<head>
     <meta charset="utf-8">
     <title> Modules , Basic Controllers , Basic $scope</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
-      <link href="bower_components/AngularJS-Toaster/toaster.min.css" rel="stylesheet" />
-  </head>
-  <body ng-app='myApp'>
-      <div class="container" ng-controller='MainController as mainCtl'>
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Modules , Basic Controllers , Basic $scope</h3>
-          <div class="row">
-            <table class="table table-hover">
-              <thead>
-                 <tr>
-                   <th>#</th>
-                   <th>user name</th>
-                   <th>email</th>
-                   <th>hash</th>
-                   <th></th>
-                 </tr>
-               </thead>
-               <tbody>
-                 <tr ng-repeat='user in mainCtl.users track by $index'>
-                    <th scope="row">{{$index + 1}}</th>
-                    <td>{{user.userName}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.hash}}</td>
-                    <td><a href="" ng-click="mainCtl.removeUser($index)"><i class="glyphicon glyphicon-remove"></i></a></td>
-                 </tr>
-               </tbody>
-             </table>
-           </div>
-           <div class="row">
-               <form class="form-inline" ng-submit='sendData()'>
-                   <div class="form-group">
-                       <label for="exampleInputName2">First Name</label>
-                       <input type="text" class="form-control" ng-model='firstName'>
-                   </div>
-                   <div class="form-group">
-                       <label for="exampleInputName2">Last Name</label>
-                       <input type="text" class="form-control" ng-model='lastName'>
-                   </div>
-                   <div class="form-group">
-                       <label for="exampleInputEmail2">Username</label>
-                       <input type="text" class="form-control" ng-model='userName'>
-                   </div>
-                   <button type="submit" class="btn btn-default">Push data</button>
-               </form>
-           </div>
-          </div>
-           </div>
-          </div>
-        </div>
-      </div>
-      <toaster-container></toaster-container>
-      <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
-      <script src="bower_components/angular-animate/angular-animate.min.js" ></script>
-      <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
-      <script src="js/app.js" charset="utf-8"></script>
-      <script src="js/main/controllers/MainController.js" charset="utf-8"></script>
-  </body>
+    <base href="/angularcourse/">
+</head>
+<body>
+<a href='main'>go to main</a>
+<div ng-view></div>
+<!-- Bower components -->
+<script src="./bower_components/angular/angular.js" charset="utf-8"></script>
+<script src="./bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js" charset="utf-8"></script>
+<!-- END Bower components -->
+<!-- App scripts -->
+<script src="js/app.js" charset="utf-8"></script>
+<script src="js/app.routing.js" charset="utf-8"></script>
+<script src="js/main/controllers/MainController.js" charset="utf-8"></script>
+<script src="js/post/controllers/PostController.js" charset="utf-8"></script>
+<!-- END App scripts -->
+
+</body>
 </html>
