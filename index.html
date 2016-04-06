@@ -7,7 +7,7 @@
     <base href="/angularcourse/">
 </head>
 <body>
-<a href='main'>go to main</a>
+<a href='posts'>go to main</a>
 <div ng-view></div>
 <!-- Bower components -->
 <script src="./bower_components/angular/angular.js" charset="utf-8"></script>
@@ -17,8 +17,10 @@
 <!-- App scripts -->
 <script src="js/app.js" charset="utf-8"></script>
 <script src="js/app.routing.js" charset="utf-8"></script>
-<script src="js/main/controllers/MainController.js" charset="utf-8"></script>
-<script src="js/post/controllers/PostController.js" charset="utf-8"></script>
+<script src="js/filters/customfilter.js" charset="utf-8"></script>
+<script src="js/posts/resources/resource.js" charset="utf-8"></script>
+<script src="js/posts/controllers/AllPostsController.js" charset="utf-8"></script>
+<script src="js/posts/controllers/SinglePostController.js" charset="utf-8"></script>
 <!-- END App scripts -->
 
 </body>
