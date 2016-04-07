@@ -3,11 +3,11 @@ App.config(function($routeProvider, $locationProvider) {
 
     $routeProvider
         .when('/posts', {
-            templateUrl: 'js/posts/partials/allposts.html',
+            templateUrl: 'js/posts/partials/index.html',
             controller: 'AllPostsController'
         })
         .when('/posts/:id', {
-            templateUrl: 'js/posts/partials/singlepost.html',
+            templateUrl: 'js/posts/partials/show.html',
             controller: 'SinglePostController'
         })
         .otherwise('/posts');
