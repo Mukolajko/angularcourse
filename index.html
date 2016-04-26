@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html ng-app='myApp'>
 <head>
-    <meta charset="utf-8">
-    <title> Modules , Basic Controllers , Basic $scope</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
-    <base href="/angularcourse/">
+  <meta charset="utf-8">
+  <title> Modules , Basic Controllers , Basic $scope</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-<a href='posts'>go to main</a>
-<div ng-view></div>
+  <div ng-view></div>
 <!-- Bower components -->
-<script src="./bower_components/angular/angular.js" charset="utf-8"></script>
-<script src="./bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular/angular.js" charset="utf-8"></script>
 <script src="bower_components/angular-route/angular-route.min.js" charset="utf-8"></script>
 <!-- END Bower components -->
+
 <!-- App scripts -->
 <script src="js/app.js" charset="utf-8"></script>
+<script src="js/serivces/authservice.js" charset="utf-8"></script>
 <script src="js/app.routing.js" charset="utf-8"></script>
-<script src="js/filters/customfilter.js" charset="utf-8"></script>
-<script src="js/posts/resources/Post.js" charset="utf-8"></script>
-<script src="js/posts/controllers/AllPostsController.js" charset="utf-8"></script>
-<script src="js/posts/controllers/SinglePostController.js" charset="utf-8"></script>
+<script src="js/main/controllers/MainController.js" charset="utf-8"></script>
+<script src="js/login/controllers/LoginController.js" charset="utf-8"></script>
 <!-- END App scripts -->
 
 </body>

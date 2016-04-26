@@ -1,14 +1,27 @@
-App.config(function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
-
+App.config(function ($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+    //resolve
     $routeProvider
-        .when('/posts', {
-            templateUrl: 'js/posts/partials/index.html',
-            controller: 'AllPostsController'
+        .when('/', {
+            templateUrl: 'js/main/partials/main.html',
+            controller: 'MainController'
         })
-        .when('/posts/:id', {
-            templateUrl: 'js/posts/partials/show.html',
-            controller: 'SinglePostController'
+        .when('/login', {
+            templateUrl: 'js/login/partials/login.html',
+            controller: 'LoginController'
         })
-        .otherwise('/posts');
+
+}).run( function($rootScope, $location, AuthService) {
+    // register listener to watch route changes
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        if ( !AuthService.isLoggedIn() ) {
+            $location.path( "/login" );
+        }
+        else {
+            $location.path( "/" );
+        }
+    });
 });
