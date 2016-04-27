@@ -3,25 +3,23 @@ App.config(function ($routeProvider, $locationProvider) {
         enabled: true,
         requireBase: false
     });
-    //resolve
+
     $routeProvider
         .when('/', {
             templateUrl: 'js/main/partials/main.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+              "check": function(AuthService, $location) {
+                  if (!AuthService.isLoggedIn()) $location.path("/login");
+              }
+            }
         })
         .when('/login', {
             templateUrl: 'js/login/partials/login.html',
             controller: 'LoginController'
         })
+        .otherwise({
+            redirectTo: "/"
+        });
 
-}).run( function($rootScope, $location, AuthService) {
-    // register listener to watch route changes
-    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-        if ( !AuthService.isLoggedIn() ) {
-            $location.path( "/login" );
-        }
-        else {
-            $location.path( "/" );
-        }
-    });
 });
