@@ -6,10 +6,15 @@ App.controller('LoginController',function($scope, $http, $location, AuthService)
     var allUsers = [];
     var matchedUserId = null;
     //get all users
-    requestAPI(null, function(err, data){
-        if (err) {console.log(err); return;}
+    $http({
+        method: "GET",
+        url: "http://angular.codeforges.com/api/wp-json/wp/v2/users/"
+    }).then(function(data){
         allUsers = data.data || [];
-    });
+    }, (function(res){
+        console.log("Error getting all users");
+        console.log(res);
+    }));
     //login
     $scope.login = function() {
         //find user in all users and get id
@@ -18,30 +23,22 @@ App.controller('LoginController',function($scope, $http, $location, AuthService)
         });
 
         if (matchedUserId) {
-            requestAPI(matchedUserId, function(err, user){
-                if (err) {
-                    $scope.error = err;
-                }
-                else {
-                    AuthService.login(user.data);
-                    $location.url("/");
-                }
-            });
+            $http({
+                method: "POST",
+                url: "http://angular.codeforges.com/api/wp-json/wp/v2/users/" + matchedUserId,
+                headers: {
+                    "authorization": "Basic ZWRpdG9yOjEyZWRpdG9y"
+                },
+                data: {username: $scope.name, password: $scope.password}
+            }).then(function(data){
+                AuthService.login(data.data);
+                $location.url("/");
+            }, (function(res){
+                $scope.error = "Password incorrect or server problem";
+            }));
         }
         else {
             $scope.error = "User not found";
         }
-    };
-    //method to handle all api requests
-    function requestAPI(userId, callback) {
-        var user = userId ? userId : "";
-        $http({
-            method: "GET",
-            url: "http://angular.codeforges.com/api/wp-json/wp/v2/users/" + user
-        }).then(function(data){
-            callback(null, data);
-        }, (function(res){
-            callback(res, null);
-        }));
     };
 });
