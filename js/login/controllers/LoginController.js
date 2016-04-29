@@ -17,6 +17,8 @@ App.controller('LoginController',function($scope, $http, $location, AuthService)
     }));
     //login
     $scope.login = function() {
+        //reset id of each try
+        matchedUserId = null;
         //find user in all users and get id
         allUsers.forEach(function(user){
             if (user.name == $scope.name) {matchedUserId = user.id;}
