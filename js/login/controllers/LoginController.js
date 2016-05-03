@@ -1,4 +1,4 @@
-App.controller('LoginController',function($scope, $http, $location, AuthService){
+App.controller('LoginController',function($scope, $http, $location, AuthService, $base64){
     $scope.name = "";
     $scope.password = "";
     $scope.error = null;
@@ -25,13 +25,13 @@ App.controller('LoginController',function($scope, $http, $location, AuthService)
         });
 
         if (matchedUserId) {
+            var baseString = $base64.encode($scope.name + ":" +  $scope.password);
             $http({
                 method: "POST",
                 url: "http://angular.codeforges.com/api/wp-json/wp/v2/users/" + matchedUserId,
                 headers: {
-                    "authorization": "Basic ZWRpdG9yOjEyZWRpdG9y"
-                },
-                data: {username: $scope.name, password: $scope.password}
+                    "authorization": "Basic " + baseString
+                }
             }).then(function(data){
                 AuthService.login(data.data);
                 $location.url("/");
