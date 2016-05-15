@@ -1,0 +1,20 @@
+#wrapper
+  div(ng-include="'app/nav.html'")
+  #page-wrapper
+    .container-fluid(ng-if='!editMode')
+      .row
+        .col-sm-12
+          h3 {{post.title.rendered}}
+          em {{post.date}}
+          br
+      .row
+        .col-sm-12
+          div(ng-bind-html='post.content.rendered | sanitize')
+        a(href='/index') Go to index
+    .container-fluid(ng-if='editMode')
+      h3 Edit post
+      form.container(ng-submit='save()')
+        .form-group
+          input#title.form-control(type='text', placeholder='Title', ng-model='title')
+        textarea#content.form-control(placeholder='Content', ng-model='content')
+        button.btn.btn-primary(type='submit') Submit

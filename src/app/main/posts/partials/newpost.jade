@@ -1,0 +1,16 @@
+#wrapper
+  div(ng-include="'app/nav.html'")
+  #page-wrapper
+    .container-fluid
+      h3 Add new post
+      form(ng-submit='save()')
+        .row
+          .col-sm-12
+            .form-group
+              input#title.form-control(type='text', placeholder='Title', ng-model='title')
+        .row
+          .col-sm-12
+            textarea#content.form-control(placeholder='Content', ng-model='content')
+        .row
+          .col-sm-12
+            button.btn.btn-primary(type='submit') Submit
